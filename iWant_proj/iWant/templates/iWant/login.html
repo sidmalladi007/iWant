@@ -1,0 +1,145 @@
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html>
+<head>
+<title>Responsive Tabs Form a Form Responsive Widget Template  :: w3layouts</title>
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Tab Form,Login Forms,Sign up Forms,Registration Forms,News latter Forms,Elements"./>
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+</script>
+<meta name="description" content="Login Page">
+{% load staticfiles %}
+<link rel="stylesheet" type="text/css" href="{% static 'iWant/css/bootstrap.min.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'iWant/css/bootstrap.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'iWant/css/landing-page.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'iWant/css/style.css' %}" />
+<script type="text/javascript" src="{% static 'iWant/js/bootstrap.js' %}"></script>
+<script type="text/javascript" src="{% static 'iWant/js/bootstrap.min.js' %}"></script> 
+<script type="text/javascript" src="{% static 'iWant/js/jquery.js' %}"></script>
+<script type="text/javascript" src="{% static 'iWant/js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'iWant/js/easyResponsiveTabs.js' %}"></script>
+				<script type="text/javascript">
+					$(document).ready(function () {
+						$('#horizontalTab').easyResponsiveTabs({
+							type: 'default', //Types: default, vertical, accordion           
+							width: 'auto', //auto or any width like 600px
+							fit: true   // 100% fit in a container
+						});
+					});
+				   </script>
+
+<!--webfonts-->
+<link href='//fonts.googleapis.com/css?family=Nixie+One' rel='stylesheet' type='text/css'>
+<link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,400,600,700,200italic,300italic,400italic,600italic|Lora:400,700,400italic,700italic|Raleway:400,500,300,600,700,200,100' rel='stylesheet' type='text/css'>
+<!--//webfonts-->
+<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div class="container topnav">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand topnav" href="{% url 'iWant:home' %}">iWant</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        {% if user.is_authenticated %}
+          				<li><a href="{% url 'iWant:profile' %}">My Wish List</a></li>
+          				{% else %}
+          				<li><a href="{% url 'iWant:login' %}">My Wish List</a></li>
+          				{% endif %}
+                    </li>
+                    <li>
+                        {% if user.is_authenticated %}
+          				<a href="{% url 'iWant:create' %}">Create New Wish</a>
+          				{% else %}
+          				<a href="{% url 'iWant:login' %}">Create New Wish</a>
+          				{% endif %}
+                    </li>
+                    <li>
+                    	{% if user.is_authenticated %}
+          				<li><a href="{% url 'iWant:logout' %}">Sign Out</a></li>
+          				{% else %}
+          				<li><a href="{% url 'iWant:login' %}">Sign In</a></li>
+          				{% endif %}
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+<div class="main">
+		<h2>Welcome</h2>
+	 <div class="sap_tabs">	
+		 <div id="horizontalTab" style="display: block; width: 100%; margin: 0px;">
+			  <ul class="resp-tabs-list">
+			  	  <li class="resp-tab-item" aria-controls="tab_item-0" role="tab"><span>Sign up</span></li>
+				  <li class="resp-tab-item" aria-controls="tab_item-1" role="tab"><span>Sign in</span></li>
+				  <div class="clear"></div>
+			  </ul>		
+			  <!---->		  	 
+			 <div class="resp-tabs-container">
+				  <div class="tab-1 resp-tab-content" aria-labelledby="tab_item-0">
+							<div class="facts">
+									<!--login1-->
+								<div class="register">
+									<form action="{% url 'iWant:newaccount' %}" method="post" role="form">
+									{% csrf_token %}
+										<input name="firstname" placeholder="First Name" type="text" required="">
+										<input name="lastname" placeholder="Last Name" type="text" required="">
+										<input name="email" placeholder="Email Address" type="text" required="">
+										<input name="username" placeholder="Username" type="text" required="">
+										<input name="password" placeholder="Password" type="password" required="">	
+										<input name="confirm-password" placeholder="Confirm Password" type="password" required="">
+										<div class="sign-up">
+											<input type="submit" value="Create Account"/>
+										</div>
+									</form>
+								</div>
+							</div>
+				 </div>		
+				 <div class="tab-2 resp-tab-content" aria-labelledby="tab_item-1">
+					  <div class="facts">
+						  <div class="register">
+									<form action="{% url 'iWant:profile' %}" method="post" role="form">	
+									{% csrf_token %}
+										<input name="username" placeholder="Username" class="mail" type="text" required="">			
+										<input name="password" placeholder="Password" class="lock" type="password" required="">										
+										<div class="sign-up">
+											<input type="submit" value="Submit"/>
+										</div>
+									</form>
+								</div>
+					  </div> 
+				  </div> 			        					            	      
+			  </div>	
+		  </div>	
+	 </div>
+	 <!--start-copyright-->
+   		<div class="copy-right">
+   			<div class="wrap">
+				<p>Copyright &copy; 2015 Responsive Tabs Form.  All rights  Reserved | Design by <a href="http://w3layouts.com">W3layouts</a></p>
+		</div>
+	</div>
+	<!--//end-copyright-->
+</div>	
+</body>
+</html>
